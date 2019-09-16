@@ -21,7 +21,7 @@ export default class ListController {
   async getAll(req, res, next) {
     try {
       //only gets boards by user who is logged in
-      let data = await _listService.find({ boardId: req.body.boardId })
+      let data = await _listService.find()
       return res.send(data)
     }
     catch (err) { next(err) }
