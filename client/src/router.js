@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Boards from './views/Boards.vue'
-import Board from './views/Board.vue'
+// @ts-ignore
+import Boards from './views/AllBoards.vue'
+// @ts-ignore
+import Board from './views/OneBoard.vue'
+// @ts-ignore
 import Login from './views/Login.vue'
 
 Vue.use(Router)
