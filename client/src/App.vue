@@ -1,12 +1,18 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
+    <button class="btn btn-danger" @click="logout()">Logout</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "App"
+  name: "App",
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+    }
+  }
 };
 </script>
 
