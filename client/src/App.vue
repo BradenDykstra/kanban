@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view />
-    <button class="btn btn-danger" @click="logout()">Logout</button>
+    <button class="btn btn-danger fixed-bottom" @click="logout()">Logout</button>
   </div>
 </template>
 
@@ -11,6 +11,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("logout");
+      location.reload();
     }
   }
 };
