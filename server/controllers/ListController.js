@@ -6,12 +6,12 @@ import { Authorize } from '../middleware/authorize.js'
 export default class ListController {
   constructor() {
     this.router = express.Router()
+      .use(Authorize.authenticated)
       .get('', this.getAll)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
       .use(this.defaultRoute)
-      .use(Authorize.authenticated)
   }
 
   defaultRoute(req, res, next) {
