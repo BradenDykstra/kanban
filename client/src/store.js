@@ -155,6 +155,18 @@ export default new Vuex.Store({
         .then(res => {
           commit('setComments', { comments: res.data, taskId: payload })
         })
+    },
+    addComment({ commit, dispatch }, payload) {
+      api.post(`/comments`, payload)
+        .then(res => {
+          dispatch('getComments', payload.taskId)
+        })
+    },
+    deleteComment({ commit, dispatch }, payload) {
+      api.delete(`/comments/${payload._id}`)
+        .then(res => {
+          dispatch('getComments', payload.taskId)
+        })
     }
   }
 })

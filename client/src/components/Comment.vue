@@ -1,7 +1,9 @@
 <template>
-  <div class="comment col-12 border">
-    <h5>{{commentProp.body}}</h5>
-    <span class="text-danger ml-1 mt-1" @click="deleteComment">X</span>
+  <div class="comment col-12 border d-flex justify-content-end">
+    <p>
+      {{commentProp.body}}
+      <span class="text-danger ml-1 mt-1" @click="deleteComment">X</span>
+    </p>
   </div>
 </template>
 
