@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import Axios from 'axios'
 import router from './router'
 import AuthService from './AuthService'
+import { set } from 'mongoose'
 
 Vue.use(Vuex)
 
@@ -21,7 +22,9 @@ export default new Vuex.Store({
     boards: [],
     activeBoard: {},
     lists: [],
-    tasks: [],
+    tasks: {
+
+    },
     comments: []
   },
   mutations: {
@@ -38,7 +41,7 @@ export default new Vuex.Store({
       state.activeBoard = payload
     },
     setTasks(state, payload) {
-      state.tasks = payload
+      Vue.set(state.tasks, payload.listId, payload.tasks)
     }
   },
   actions: {
@@ -108,21 +111,19 @@ export default new Vuex.Store({
 
       api.get(`/boards/${payload}/lists`)
         .then(res => {
-
           commit('setLists', res.data)
         })
     },
     addList({ commit, dispatch }, data) {
       api.post('lists', data)
         .then(serverList => {
-          dispatch('getLists')
+          dispatch('getLists', data.boardId)
         })
     },
     deleteList({ commit, dispatch }, data) {
-      api.delete('lists/' + data)
+      api.delete('lists/' + data._id)
         .then(res => {
-          dispatch('getLists')
-          location.reload()
+          dispatch('getLists', data.boardId)
         })
     },
 
@@ -131,7 +132,7 @@ export default new Vuex.Store({
     getTasks({ commit, dispatch }, payload) {
       api.get(`/lists/${payload}/tasks`)
         .then(res => {
-          commit('setTasks', res.data)
+          commit('setTasks', { tasks: res.data, listId: payload })
         })
     },
   }
