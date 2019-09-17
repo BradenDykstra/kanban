@@ -104,10 +104,24 @@ export default new Vuex.Store({
           commit('setLists', res.data)
         })
     },
-    addList({ commit, dispatch }, listData) {
+    addList({ commit, dispatch }, data) {
+      let listData = {
+        title: data.title,
+        boardId: data.boardId
+      }
       api.post('lists', listData)
         .then(serverList => {
           dispatch('getLists')
+          location.reload()
+        })
+    },
+    deleteList({ commit, dispatch }, data) {
+      console.log(data);
+
+      api.delete('lists/' + data)
+        .then(res => {
+          dispatch('getLists')
+          location.reload()
         })
     }
 
