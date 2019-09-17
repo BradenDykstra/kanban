@@ -1,6 +1,7 @@
 import _taskService from '../services/TaskService'
 import express from 'express'
 import { Authorize } from '../middleware/authorize.js'
+import _commentService from '../services/CommentService'
 
 //PUBLIC
 export default class TaskController {
@@ -8,6 +9,7 @@ export default class TaskController {
     this.router = express.Router()
       .use(Authorize.authenticated)
       .get('', this.getAll)
+      .get('/:id/comments', this.getComments)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -25,6 +27,15 @@ export default class TaskController {
       return res.send(data)
     }
     catch (err) { next(err) }
+  }
+
+  async getComments(req, res, next) {
+    try {
+      let data = await _commentService.find({ taskId: req.body.taskId })
+      return res.send(data)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async create(req, res, next) {
