@@ -1,11 +1,18 @@
 <template>
   <div class="task row border" v-if="taskProp.listId == listProp._id">
-    <h5>{{taskProp.body}}</h5>
+    <h4>{{taskProp.body}}</h4>
     <span class="text-danger ml-1 mt-1" @click="deleteTask">X</span>
+    <Comment
+      v-for="comment in comments"
+      :commentProp="comment"
+      :taskProp="taskProp"
+      :key="comment._id"
+    />
   </div>
 </template>
 
 <script>
+import Comment from "./Comment";
 export default {
   name: "Task",
   computed: {
@@ -21,6 +28,9 @@ export default {
     deleteTask() {
       this.$store.dispatch("deleteTask", this.taskProp);
     }
+  },
+  mounted() {
+    this.$store.dispatch("getComments", this.taskProp._id);
   }
 };
 </script>

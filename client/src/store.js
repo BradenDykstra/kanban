@@ -25,7 +25,7 @@ export default new Vuex.Store({
     tasks: {
 
     },
-    comments: []
+    comments: {}
   },
   mutations: {
     setUser(state, user) {
@@ -42,6 +42,9 @@ export default new Vuex.Store({
     },
     setTasks(state, payload) {
       Vue.set(state.tasks, payload.listId, payload.tasks)
+    },
+    setComments(state, payload) {
+      Vue.set(state.comments, payload.taskId, payload.comments)
     }
   },
   actions: {
@@ -143,6 +146,14 @@ export default new Vuex.Store({
       api.delete(`/tasks/${payload._id}`)
         .then(res => {
           dispatch('getTasks', payload.listId)
+        })
+    },
+    //end other region that we didn't start
+
+    getComments({ commit, dispatch }, payload) {
+      api.get(`/tasks/${payload}/comments`)
+        .then(res => {
+          commit('setComments', { comments: res.data, taskId: payload })
         })
     }
   }
