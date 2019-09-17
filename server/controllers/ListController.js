@@ -8,6 +8,7 @@ export default class ListController {
     this.router = express.Router()
       .use(Authorize.authenticated)
       .get('', this.getAll)
+      .get('/:id/tasks', this.getById)
       .post('', this.create)
       .put('/:id', this.edit)
       .delete('/:id', this.delete)
@@ -25,6 +26,15 @@ export default class ListController {
       return res.send(data)
     }
     catch (err) { next(err) }
+  }
+
+  async getById(req, res, next) {
+    try {
+      let data = await _listService.find({ listId: req.params.id })
+      return res.send(data)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async create(req, res, next) {
