@@ -126,8 +126,6 @@ export default new Vuex.Store({
           dispatch('getLists', data.boardId)
         })
     },
-
-
     //#endregion
     getTasks({ commit, dispatch }, payload) {
       api.get(`/lists/${payload}/tasks`)
@@ -135,5 +133,17 @@ export default new Vuex.Store({
           commit('setTasks', { tasks: res.data, listId: payload })
         })
     },
+    addTask({ commit, dispatch }, payload) {
+      api.post(`/tasks`, payload)
+        .then(res => {
+          dispatch('getTasks', payload.listId)
+        })
+    },
+    deleteTask({ commit, dispatch }, payload) {
+      api.delete(`/tasks/${payload._id}`)
+        .then(res => {
+          dispatch('getTasks', payload.listId)
+        })
+    }
   }
 })

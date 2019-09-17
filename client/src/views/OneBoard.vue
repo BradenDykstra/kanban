@@ -41,8 +41,7 @@ export default {
         .mixin({
           input: "text",
           confirmButtonText: "Next &rarr;",
-          showCancelButton: true,
-          progressSteps: ["1"]
+          showCancelButton: true
         })
         .queue([
           {
