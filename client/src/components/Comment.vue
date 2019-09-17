@@ -2,7 +2,7 @@
   <div class="comment col-12 border d-flex justify-content-end">
     <p>
       {{commentProp.body}}
-      <span class="text-danger ml-1 mt-1" @click="deleteComment">X</span>
+      <i @click="deleteComment" class="fas fa-times text-danger ml-1 mt-1"></i>
     </p>
   </div>
 </template>

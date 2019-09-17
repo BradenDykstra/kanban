@@ -2,7 +2,7 @@
   <div class="task" v-if="taskProp.listId == listProp._id">
     <div class="row d-flex border justify-content-between">
       <h4>{{taskProp.body}}</h4>
-      <span class="text-danger mt-1 mt-1" @click="deleteTask()">X</span>
+      <i class="text-danger fas fa-trash-alt" @click="deleteTask()"></i>
     </div>
     <Comment
       v-for="comment in comments"
@@ -11,7 +11,7 @@
       :key="comment._id"
     />
     <div class="row d-flex justify-content-center">
-      <span class="text-success" @click="addComment()">+</span>
+      <i @click="addComment()" class="text-success fas fa-plus-circle"></i>
     </div>
   </div>
 </template>

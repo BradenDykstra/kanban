@@ -4,7 +4,10 @@
     <hr />
     <Task v-for="task in tasks" :taskProp="task" :listProp="listProp" :key="task._id" />
     <button class="btn btn-success" @click="addTask">Add Task</button>
-    <button class="btn btn-danger" @click="deleteList">Delete List</button>
+    <button class="btn btn-danger" @click="deleteList">
+      Delete List
+      <i class="fas fa-dumpster"></i>
+    </button>
   </div>
 </template>
 
