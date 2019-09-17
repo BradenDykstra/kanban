@@ -2,10 +2,12 @@
   <div class="board container-fluid">
     <h1>{{board.title}}</h1>
     <button class="btn btn-danger" @click="deleteBoard">Delete Board</button>
+    <button class="btn btn-primary ml-5" @click="rerout">Back</button>
     <div class="row">
       <List v-for="list in lists" :listProp="list" :key="list._id" />
     </div>
-    <button class="btn btn-primary" @click="createListModal">Create List</button>
+    <button class="btn btn-success" @click="createListModal">Create List</button>
+    <br />
   </div>
 </template>
 
@@ -19,11 +21,17 @@ export default {
     this.$store.dispatch("getLists", this.boardId);
   },
   methods: {
+    rerout() {
+      this.$router.push("/boards");
+    },
     deleteBoard() {
       let confirmed = swal
-        .fire("Are you sure? This action cannot be undone!")
+        .fire({
+          text: "Are you sure? This action cannot be undone!",
+          showCancelButton: true
+        })
         .then(res => {
-          if (confirmed) {
+          if (res.value) {
             this.$store.dispatch("deleteBoard", this.boardId);
           }
         });
