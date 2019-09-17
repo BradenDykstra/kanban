@@ -113,14 +113,9 @@ export default new Vuex.Store({
         })
     },
     addList({ commit, dispatch }, data) {
-      let listData = {
-        title: data.title,
-        boardId: data.boardId
-      }
-      api.post('lists', listData)
+      api.post('lists', data)
         .then(serverList => {
           dispatch('getLists')
-          location.reload()
         })
     },
     deleteList({ commit, dispatch }, data) {

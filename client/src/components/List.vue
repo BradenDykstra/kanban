@@ -3,7 +3,7 @@
     <h1>--Hi--</h1>
     <h1>{{listProp.title}}</h1>
     <div class="row">
-      <List v-for="task in tasks" :taskProp="task" :key="task._id" />
+      <!-- <Task v-for="task in tasks" :taskProp="task" :key="task._id" /> -->
     </div>
     <button class="btn btn-danger" @click="deleteList">Delete List</button>
   </div>
@@ -17,7 +17,7 @@ export default {
       return this.$store.state.lists;
     }
   },
-  props: ["listProp"],
+  props: ["listProp", "boardProp"],
   methods: {
     deleteList() {
       this.$store.dispatch("deleteList", this.listProp._id);
@@ -25,7 +25,8 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getTasks", this.listProp._id);
-  }
+  },
+  components: {}
 };
 </script>
 
