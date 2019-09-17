@@ -2,19 +2,21 @@
   <div class="list border col-4">
     <h1>--Hi--</h1>
     <h1>{{listProp.title}}</h1>
-    <div class="row">
-      <!-- <Task v-for="task in tasks" :taskProp="task" :key="task._id" /> -->
-    </div>
+    <Task v-for="task in tasks" :taskProp="task" :key="task._id" />
     <button class="btn btn-danger" @click="deleteList">Delete List</button>
   </div>
 </template>
 
 <script>
+import Task from "./Task";
 export default {
   name: "List",
   computed: {
     list() {
       return this.$store.state.lists;
+    },
+    tasks() {
+      return this.$store.state.tasks;
     }
   },
   props: ["listProp", "boardProp"],
@@ -26,7 +28,9 @@ export default {
   mounted() {
     this.$store.dispatch("getTasks", this.listProp._id);
   },
-  components: {}
+  components: {
+    Task
+  }
 };
 </script>
 

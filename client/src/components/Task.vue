@@ -1,7 +1,7 @@
 <template>
-  <div class="task border col-4">
-    <h1>--Hi--</h1>
-    <h1>{{taskProp.title}}</h1>
+  <div class="task row border">
+    <h1>--Task--</h1>
+    <h1>{{taskProp.body}}</h1>
     <button class="btn btn-danger" @click="deleteTask">Delete Task</button>
   </div>
 </template>
