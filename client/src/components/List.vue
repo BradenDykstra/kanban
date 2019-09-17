@@ -22,6 +22,9 @@ export default {
     deleteList() {
       this.$store.dispatch("deleteList", this.listProp._id);
     }
+  },
+  mounted() {
+    this.$store.dispatch("getTasks", this.listProp._id);
   }
 };
 </script>

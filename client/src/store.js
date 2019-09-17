@@ -36,6 +36,9 @@ export default new Vuex.Store({
     },
     setActiveBoard(state, payload) {
       state.activeBoard = payload
+    },
+    setTasks(state, payload) {
+      state.tasks = payload
     }
   },
   actions: {
@@ -133,11 +136,9 @@ export default new Vuex.Store({
 
     //#endregion
     getTasks({ commit, dispatch }, payload) {
-
-      api.get(`/boards/${payload}/lists`)
+      api.get(`/lists/${payload}/tasks`)
         .then(res => {
-
-          commit('setLists', res.data)
+          commit('setTasks', res.data)
         })
     },
   }
