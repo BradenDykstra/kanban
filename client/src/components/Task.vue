@@ -23,7 +23,7 @@ export default {
       return this.$store.state.lists;
     },
     comments() {
-      return this.$store.state.comments;
+      return this.$store.state.comments[this.taskProp._id] || [];
     }
   },
   props: ["taskProp", "listProp"],
