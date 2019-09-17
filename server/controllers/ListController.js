@@ -31,8 +31,6 @@ export default class ListController {
 
   async getTasksById(req, res, next) {
     try {
-      console.log(req.params);
-
       let data = await _taskService.find({ listId: req.params.id })
       return res.send(data)
     } catch (error) {

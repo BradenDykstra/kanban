@@ -52,19 +52,20 @@ export default {
         ])
         .then(result => {
           if (result.value) {
-            swal.fire({
-              title: "All done!",
-              html:
-                "Your answers: <pre><code>" +
-                JSON.stringify(result.value) +
-                "</code></pre>",
-              confirmButtonText: "Lovely!"
-            });
+            // swal.fire({
+            //   title: "All done!",
+            //   html:
+            //     "Your answers: <pre><code>" +
+            //     JSON.stringify(result.value) +
+            //     "</code></pre>",
+            //   confirmButtonText: "Lovely!"
+            // });
             let data = {
               title: result.value[0],
               boardId: this.boardId
             };
             this.$store.dispatch("addList", data);
+            location.reload();
           }
         });
     }
