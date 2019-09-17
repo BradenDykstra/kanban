@@ -1,5 +1,5 @@
 <template>
-  <div class="comment row border" v-if="commentProp.listId == listProp._id">
+  <div class="comment col-12 border" v-if="commentProp.taskId == taskProp._id">
     <h5>{{commentProp.body}}</h5>
     <span class="text-danger ml-1 mt-1" @click="deleteComment">X</span>
   </div>

@@ -21,6 +21,9 @@ export default {
     },
     lists() {
       return this.$store.state.lists;
+    },
+    comments() {
+      return this.$store.state.comments;
     }
   },
   props: ["taskProp", "listProp"],
@@ -31,6 +34,9 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getComments", this.taskProp._id);
+  },
+  components: {
+    Comment
   }
 };
 </script>

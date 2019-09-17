@@ -150,11 +150,19 @@ export default new Vuex.Store({
     },
     //end other region that we didn't start
 
-    getComments({ commit, dispatch }, payload) {
-      api.get(`/tasks/${payload}/comments`)
-        .then(res => {
-          commit('setComments', { comments: res.data, taskId: payload })
-        })
+    async getComments({ commit, dispatch }, payload) {
+      // debugger
+      // api.get(`/tasks/${payload}/comments`)
+      //   .then(res => {
+      //     console.log(res.data);
+
+      //     commit('setComments', { comments: res.data, taskId: payload })
+      //   })
+      console.log(payload);
+
+      let res = await api.get(`/tasks/${payload}/comments`)
+      console.log(res)
+
     }
   }
 })
