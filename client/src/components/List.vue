@@ -2,6 +2,9 @@
   <div class="list border col-4">
     <h1>--Hi--</h1>
     <h1>{{listProp.title}}</h1>
+    <div class="row">
+      <List v-for="task in tasks" :taskProp="task" :key="task._id" />
+    </div>
     <button class="btn btn-danger" @click="deleteList">Delete List</button>
   </div>
 </template>

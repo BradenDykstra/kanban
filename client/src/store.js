@@ -128,9 +128,17 @@ export default new Vuex.Store({
           dispatch('getLists')
           location.reload()
         })
-    }
+    },
 
 
     //#endregion
+    getTasks({ commit, dispatch }, payload) {
+
+      api.get(`/boards/${payload}/lists`)
+        .then(res => {
+
+          commit('setLists', res.data)
+        })
+    },
   }
 })
