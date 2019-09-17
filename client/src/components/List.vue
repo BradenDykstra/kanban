@@ -1,9 +1,7 @@
 <template>
-  <div class="list border">
+  <div class="list border col-4">
     <h1>--Hi--</h1>
     <h1>{{listProp.title}}</h1>
-    <h1>{{listProp.boardId}}</h1>
-    <h1>{{listProp._id}}</h1>
     <button class="btn btn-danger" @click="deleteList">Delete List</button>
   </div>
 </template>

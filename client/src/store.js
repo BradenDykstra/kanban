@@ -79,8 +79,6 @@ export default new Vuex.Store({
         })
     },
     getOneBoard({ commit, dispatch }, payload) {
-      console.log(payload);
-
       api.get('boards', payload)
         .then(res => {
           commit('setActiveBoard', res.data)
@@ -90,6 +88,13 @@ export default new Vuex.Store({
       api.post('boards', boardData)
         .then(serverBoard => {
           dispatch('getBoards')
+        })
+    },
+    deleteBoard({ commit, dispatch }, boardId) {
+      api.delete('boards/' + boardId)
+        .then(serverBoard => {
+          dispatch('getBoards')
+          router.push('/boards')
         })
     },
     //#endregion

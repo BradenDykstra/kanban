@@ -1,7 +1,10 @@
 <template>
-  <div class="board">
+  <div class="board container-fluid">
     <h1>{{board.title}}</h1>
-    <List v-for="list in lists" :listProp="list" :key="list._id" />
+    <button class="btn btn-danger" @click="deleteBoard">Delete Board</button>
+    <div class="row">
+      <List v-for="list in lists" :listProp="list" :key="list._id" />
+    </div>
     <button class="btn btn-primary" @click="createListModal">Create List</button>
   </div>
 </template>
@@ -16,6 +19,15 @@ export default {
     this.$store.dispatch("getLists", this.boardId);
   },
   methods: {
+    deleteBoard() {
+      let confirmed = swal
+        .fire("Are you sure? This action cannot be undone!")
+        .then(res => {
+          if (confirmed) {
+            this.$store.dispatch("deleteBoard", this.boardId);
+          }
+        });
+    },
     createListModal() {
       swal
         .mixin({
