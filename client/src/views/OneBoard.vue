@@ -1,9 +1,27 @@
 <template>
   <div class="board container-fluid bg-dark text-light">
     <h1>{{board.title}}</h1>
-    <i class="fas fa-arrow-alt-circle-left text-primary mx-5" @click="rerout"></i>
-    <i class="fas fa-folder-plus text-success mx-5" @click="createListModal"></i>
-    <i class="fas fa-dumpster-fire text-danger mx-5" @click="deleteBoard"></i>
+    <i
+      class="fas fa-arrow-alt-circle-left text-primary mx-5"
+      @click="rerout"
+      title="Back to Boards"
+      data-toggle="tooltip"
+      data-placement="right"
+    ></i>
+    <i
+      class="fas fa-folder-plus text-success mx-5"
+      @click="createListModal"
+      title="Create a List"
+      data-toggle="tooltip"
+      data-placement="right"
+    ></i>
+    <i
+      class="fas fa-dumpster-fire text-danger mx-5"
+      @click="deleteBoard"
+      title="Delete this Board"
+      data-toggle="tooltip"
+      data-placement="right"
+    ></i>
 
     <div class="row d-flex justify-content-around">
       <List v-for="list in lists" :listProp="list" :key="list._id" />

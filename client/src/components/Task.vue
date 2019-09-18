@@ -5,8 +5,13 @@
         <div class="row d-flex justify-content-between align-content-center">
           <h4>{{taskProp.body}}</h4>
         </div>
-        <div class="row d-flex justify-content-between">
-          <i class="fas fa-arrows-alt text-info" data-toggle="dropdown"></i>
+        <div class="row d-flex justify-content-center">
+          <i
+            class="fas fa-arrows-alt text-info mx-3"
+            data-toggle="tooltip"
+            title="Move this Task"
+            data-placement="right"
+          ></i>
 
           <div class="dropdown-menu">
             <DropdownItem
@@ -18,8 +23,20 @@
             />
           </div>
 
-          <i @click="addComment()" class="text-success fas fa-comments"></i>
-          <i class="text-danger fas fa-trash-alt" @click="deleteTask()"></i>
+          <i
+            @click="addComment()"
+            class="text-success fas fa-comments mx-3"
+            title="Add a Comment"
+            data-toggle="tooltip"
+            data-placement="right"
+          ></i>
+          <i
+            class="text-danger fas fa-trash-alt mx-3"
+            @click="deleteTask()"
+            title="Delete this Task"
+            data-toggle="tooltip"
+            data-placement="right"
+          ></i>
         </div>
       </div>
     </div>

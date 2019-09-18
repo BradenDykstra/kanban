@@ -2,7 +2,13 @@
   <div class="comment col-12 border d-flex justify-content-end">
     <p>
       {{commentProp.body}}
-      <i @click="deleteComment" class="fas fa-times text-danger ml-1 mt-1"></i>
+      <i
+        @click="deleteComment"
+        class="fas fa-times text-danger ml-1 mt-1"
+        title="Delete this Comment"
+        data-toggle="tooltip"
+        data-placement="right"
+      ></i>
     </p>
   </div>
 </template>
