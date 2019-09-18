@@ -115,6 +115,7 @@ export default new Vuex.Store({
       api.get(`/boards/${payload}/lists`)
         .then(res => {
           commit('setLists', res.data)
+          // commit('setActiveBoard', payload)
         })
     },
     addList({ commit, dispatch }, data) {
@@ -146,6 +147,13 @@ export default new Vuex.Store({
       api.delete(`/tasks/${payload._id}`)
         .then(res => {
           dispatch('getTasks', payload.listId)
+        })
+    },
+    moveTask({ commit, dispatch }, payload) {
+      api.put(`/tasks/${payload._id}`, payload)
+        .then(res => {
+          dispatch('getTasks', payload.listId)
+          dispatch('getTasks', payload.oldListId)
         })
     },
     //end other region that we didn't start

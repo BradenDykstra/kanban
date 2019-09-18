@@ -2,6 +2,22 @@
   <div class="task" v-if="taskProp.listId == listProp._id">
     <div class="row d-flex border justify-content-between">
       <h4>{{taskProp.body}}</h4>
+      <div class="btn-group">
+        <button
+          type="button"
+          class="badge badge-pill btn-danger dropdown-toggle"
+          data-toggle="dropdown"
+        >Move Task</button>
+        <div class="dropdown-menu">
+          <DropdownItem
+            v-for="list in lists"
+            :listProp="list"
+            :taskProp="taskProp"
+            :key="list._id"
+            class="dropdown-item"
+          />
+        </div>
+      </div>
       <i class="text-danger fas fa-trash-alt" @click="deleteTask()"></i>
     </div>
     <Comment
@@ -10,13 +26,13 @@
       :taskProp="taskProp"
       :key="comment._id"
     />
-    <div class="row d-flex justify-content-center">
-      <i @click="addComment()" class="text-success fas fa-plus-circle"></i>
-    </div>
+    <div class="row d-flex justify-content-center"></div>
+    <i @click="addComment()" class="text-success fas fa-plus-circle"></i>
   </div>
 </template>
 
 <script>
+import DropdownItem from "./DropdownItem";
 import Comment from "./Comment";
 import swal from "sweetalert2";
 export default {
@@ -47,6 +63,7 @@ export default {
           }
         });
     },
+
     addComment() {
       swal
         .mixin({
@@ -75,10 +92,14 @@ export default {
     this.$store.dispatch("getComments", this.taskProp._id);
   },
   components: {
-    Comment
+    Comment,
+    DropdownItem
   }
 };
 </script>
 
 <style scoped>
+.badge {
+  height: 20px;
+}
 </style>
