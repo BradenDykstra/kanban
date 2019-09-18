@@ -67,8 +67,7 @@ export default {
     this.$store.dispatch("getTasks", this.listProp._id);
   },
   components: {
-    Task,
-    draggable
+    Task
   }
 };
 </script>
