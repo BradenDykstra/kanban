@@ -39,6 +39,7 @@ export default {
   mounted() {
     this.$store.dispatch("getBoards");
     this.$store.dispatch("getLists", this.$route.params.boardId);
+    $('[data-toggle="tooltip"]').tooltip();
   },
   methods: {
     rerout() {

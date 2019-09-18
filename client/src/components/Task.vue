@@ -113,6 +113,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getComments", this.taskProp._id);
+    $('[data-toggle="tooltip"]').tooltip();
   },
   components: {
     Comment,
