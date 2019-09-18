@@ -1,9 +1,9 @@
 <template>
-  <div class="board container-fluid">
+  <div class="board container-fluid bg-dark text-light">
     <h1>{{board.title}}</h1>
     <i class="fas fa-dumpster-fire text-danger" @click="deleteBoard"></i>
     <i class="fas fa-arrow-alt-circle-left text-primary ml-5" @click="rerout"></i>
-    <div class="row">
+    <div class="row d-flex justify-content-around">
       <List v-for="list in lists" :listProp="list" :key="list._id" />
     </div>
 

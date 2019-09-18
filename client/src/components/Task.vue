@@ -1,21 +1,27 @@
 <template>
   <div class="task" v-if="taskProp.listId == listProp._id">
-    <div class="row d-flex border justify-content-between align-content-center">
-      <h4>{{taskProp.body}}</h4>
+    <div class="card text-dark">
+      <div class="card-body">
+        <div class="row d-flex justify-content-between align-content-center">
+          <h4>{{taskProp.body}}</h4>
+        </div>
+        <div class="row d-flex justify-content-between">
+          <i class="fas fa-arrows-alt text-info" data-toggle="dropdown"></i>
 
-      <i class="fas fa-arrows-alt text-info" data-toggle="dropdown"></i>
+          <div class="dropdown-menu">
+            <DropdownItem
+              v-for="list in lists"
+              :listProp="list"
+              :taskProp="taskProp"
+              :key="list._id"
+              class="dropdown-item"
+            />
+          </div>
 
-      <div class="dropdown-menu">
-        <DropdownItem
-          v-for="list in lists"
-          :listProp="list"
-          :taskProp="taskProp"
-          :key="list._id"
-          class="dropdown-item"
-        />
+          <i @click="addComment()" class="text-success fas fa-comments"></i>
+          <i class="text-danger fas fa-trash-alt" @click="deleteTask()"></i>
+        </div>
       </div>
-
-      <i class="text-danger fas fa-trash-alt" @click="deleteTask()"></i>
     </div>
     <Comment
       v-for="comment in comments"
@@ -24,7 +30,6 @@
       :key="comment._id"
     />
     <div class="row d-flex justify-content-center"></div>
-    <i @click="addComment()" class="text-success fas fa-comments"></i>
   </div>
 </template>
 
