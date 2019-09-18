@@ -50,7 +50,17 @@ export default {
         });
     },
     deleteList() {
-      this.$store.dispatch("deleteList", this.listProp);
+      let confirmed = swal
+        .fire({
+          title: "Are you sure?",
+          text: "This action cannot be undone!",
+          showCancelButton: true
+        })
+        .then(res => {
+          if (res.value) {
+            this.$store.dispatch("deleteList", this.listProp);
+          }
+        });
     }
   },
   mounted() {

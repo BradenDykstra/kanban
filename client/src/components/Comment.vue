@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import swal from "sweetalert2";
+
 export default {
   name: "Comment",
   computed: {
@@ -21,7 +23,17 @@ export default {
   props: ["taskProp", "commentProp"],
   methods: {
     deleteComment() {
-      this.$store.dispatch("deleteComment", this.commentProp);
+      let confirmed = swal
+        .fire({
+          title: "Are you sure?",
+          text: "This action cannot be undone!",
+          showCancelButton: true
+        })
+        .then(res => {
+          if (res.value) {
+            this.$store.dispatch("deleteComment", this.commentProp);
+          }
+        });
     }
   }
 };

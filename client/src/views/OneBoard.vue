@@ -30,7 +30,8 @@ export default {
     deleteBoard() {
       let confirmed = swal
         .fire({
-          text: "Are you sure? This action cannot be undone!",
+          title: "Are you sure?",
+          text: "This action cannot be undone!",
           showCancelButton: true
         })
         .then(res => {

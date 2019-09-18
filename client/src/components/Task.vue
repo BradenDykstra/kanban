@@ -35,7 +35,17 @@ export default {
   props: ["taskProp", "listProp"],
   methods: {
     deleteTask() {
-      this.$store.dispatch("deleteTask", this.taskProp);
+      let confirmed = swal
+        .fire({
+          title: "Are you sure?",
+          text: "This action cannot be undone!",
+          showCancelButton: true
+        })
+        .then(res => {
+          if (res.value) {
+            this.$store.dispatch("deleteTask", this.taskProp);
+          }
+        });
     },
     addComment() {
       swal
