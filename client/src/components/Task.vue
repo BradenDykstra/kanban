@@ -24,6 +24,7 @@
       </div>
     </div>
     <Comment
+      class="rounded"
       v-for="comment in comments"
       :commentProp="comment"
       :taskProp="taskProp"

@@ -6,7 +6,7 @@
     </div>
     <hr class="bg-light" />
     <i class="fas fa-pen text-success" @click="addTask"></i>
-    <Task v-for="task in tasks" :taskProp="task" :listProp="listProp" :key="task._id" />
+    <Task class="my-2" v-for="task in tasks" :taskProp="task" :listProp="listProp" :key="task._id" />
   </div>
 </template>
 
