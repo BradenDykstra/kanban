@@ -115,7 +115,6 @@ export default new Vuex.Store({
       api.get(`/boards/${payload}/lists`)
         .then(res => {
           commit('setLists', res.data)
-          // commit('setActiveBoard', payload)
         })
     },
     addList({ commit, dispatch }, data) {

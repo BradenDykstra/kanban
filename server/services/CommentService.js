@@ -8,7 +8,8 @@ const ObjectId = Schema.Types.ObjectId
 let _schema = new Schema({
   body: { type: String, required: true },
   authorId: { type: ObjectId, ref: 'User', required: true },
-  taskId: { type: ObjectId, ref: 'Task', required: true }
+  taskId: { type: ObjectId, ref: 'Task', required: true },
+  boardId: { type: ObjectId, ref: 'Board', required: true }
 }, { timestamps: true })
 
 //CASCADE ON DELETE
@@ -21,4 +22,8 @@ _schema.pre('findOneAndRemove', function (next) {
     .catch(err => next(err))
 })
 
-export default mongoose.model('Comment', _schema)
+export default class CommentService {
+  get repository() {
+    return mongoose.model('Comment', _schema)
+  }
+}

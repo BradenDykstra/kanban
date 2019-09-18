@@ -78,7 +78,8 @@ export default {
           if (result.value) {
             let data = {
               body: result.value[0],
-              taskId: this.taskProp._id
+              taskId: this.taskProp._id,
+              boardId: this.taskProp.boardId
             };
             this.$store.dispatch("addComment", data);
           }

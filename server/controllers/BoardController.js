@@ -3,6 +3,8 @@ import express from 'express'
 import { Authorize } from '../middleware/authorize.js'
 import _listService from '../services/ListService'
 
+let listRepo = new _listService().repository
+
 //PUBLIC
 export default class BoardsController {
   constructor() {
@@ -39,7 +41,7 @@ export default class BoardsController {
 
   async getListsById(req, res, next) {
     try {
-      let data = await _listService.find({ boardId: req.params.id })
+      let data = await listRepo.find({ boardId: req.params.id })
       return res.send(data)
     } catch (error) {
       next(error)

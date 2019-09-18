@@ -42,7 +42,8 @@ export default {
           if (result.value) {
             let data = {
               body: result.value[0],
-              listId: this.listProp._id
+              listId: this.listProp._id,
+              boardId: this.listProp.boardId
             };
             this.$store.dispatch("addTask", data);
           }

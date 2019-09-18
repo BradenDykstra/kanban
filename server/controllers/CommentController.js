@@ -2,6 +2,8 @@ import _commentService from '../services/CommentService'
 import express from 'express'
 import { Authorize } from '../middleware/authorize.js'
 
+let commentRepo = new _commentService().repository
+
 //PUBLIC
 export default class ListController {
   constructor() {
@@ -21,7 +23,7 @@ export default class ListController {
   async getAll(req, res, next) {
     try {
       //only gets boards by user who is logged in
-      let data = await _commentService.find({ taskId: req.body.taskId })
+      let data = await commentRepo.find({ taskId: req.body.taskId })
       return res.send(data)
     }
     catch (err) { next(err) }
@@ -30,14 +32,14 @@ export default class ListController {
   async create(req, res, next) {
     try {
       req.body.authorId = req.session.uid
-      let data = await _commentService.create(req.body)
+      let data = await commentRepo.create(req.body)
       return res.status(201).send(data)
     } catch (error) { next(error) }
   }
 
   async edit(req, res, next) {
     try {
-      let data = await _commentService.findOneAndUpdate({ _id: req.params.id, authorId: req.session.uid }, req.body, { new: true })
+      let data = await commentRepo.findOneAndUpdate({ _id: req.params.id, authorId: req.session.uid }, req.body, { new: true })
       if (data) {
         return res.send(data)
       }
@@ -47,7 +49,7 @@ export default class ListController {
 
   async delete(req, res, next) {
     try {
-      await _commentService.findOneAndRemove({ _id: req.params.id, authorId: req.session.uid })
+      await commentRepo.findOneAndRemove({ _id: req.params.id, authorId: req.session.uid })
       return res.send("Successfully deleted")
     } catch (error) { next(error) }
   }

@@ -3,6 +3,9 @@ import express from 'express'
 import { Authorize } from '../middleware/authorize.js'
 import _commentService from '../services/CommentService'
 
+let taskRepo = new _taskService().repository
+let commentRepo = new _commentService().repository
+
 //PUBLIC
 export default class TaskController {
   constructor() {
@@ -23,7 +26,7 @@ export default class TaskController {
   async getAll(req, res, next) {
     try {
       //only gets boards by user who is logged in
-      let data = await _taskService.find({ listId: req.body.listId })
+      let data = await taskRepo.find({ listId: req.body.listId })
       return res.send(data)
     }
     catch (err) { next(err) }
@@ -31,7 +34,7 @@ export default class TaskController {
 
   async getComments(req, res, next) {
     try {
-      let data = await _commentService.find({ taskId: req.params.id })
+      let data = await commentRepo.find({ taskId: req.params.id })
       return res.send(data)
     } catch (error) {
       next(error)
@@ -40,15 +43,17 @@ export default class TaskController {
 
   async create(req, res, next) {
     try {
+      console.log("hi");
+
       req.body.authorId = req.session.uid
-      let data = await _taskService.create(req.body)
+      let data = await taskRepo.create(req.body)
       return res.status(201).send(data)
     } catch (error) { next(error) }
   }
 
   async edit(req, res, next) {
     try {
-      let data = await _taskService.findOneAndUpdate({ _id: req.params.id, authorId: req.session.uid }, req.body, { new: true })
+      let data = await taskRepo.findOneAndUpdate({ _id: req.params.id, authorId: req.session.uid }, req.body, { new: true })
       if (data) {
         return res.send(data)
       }
@@ -58,7 +63,7 @@ export default class TaskController {
 
   async delete(req, res, next) {
     try {
-      await _taskService.findOneAndRemove({ _id: req.params.id, authorId: req.session.uid })
+      await taskRepo.findOneAndRemove({ _id: req.params.id, authorId: req.session.uid })
       return res.send("Successfully deleted")
     } catch (error) { next(error) }
   }
