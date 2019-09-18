@@ -43,8 +43,6 @@ export default class TaskController {
 
   async create(req, res, next) {
     try {
-      console.log("hi");
-
       req.body.authorId = req.session.uid
       let data = await taskRepo.create(req.body)
       return res.status(201).send(data)
