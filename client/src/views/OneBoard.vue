@@ -1,15 +1,15 @@
 <template>
   <div class="board container-fluid">
     <h1>{{board.title}}</h1>
-    <button class="btn btn-danger" @click="deleteBoard">
+    <button class="badge badge-pill btn-danger" @click="deleteBoard">
       Delete Board
       <i class="fas fa-dumpster-fire"></i>
     </button>
-    <button class="btn btn-primary ml-5" @click="rerout">Back</button>
+    <button class="badge badge-pill btn-primary ml-5" @click="rerout">Back</button>
     <div class="row">
       <List v-for="list in lists" :listProp="list" :key="list._id" />
     </div>
-    <button class="btn btn-success" @click="createListModal">Create List</button>
+    <button class="badge badge-pill btn-success" @click="createListModal">Create List</button>
     <br />
   </div>
 </template>
