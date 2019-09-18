@@ -1,13 +1,12 @@
 <template>
   <div class="list border col-4">
-    <h3>{{listProp.title}}</h3>
+    <div class="d-flex justify-content-between">
+      <h3 class="mt-1">{{listProp.title}}</h3>
+      <i class="fas fa-dumpster float-right text-danger mt-3" @click="deleteList"></i>
+    </div>
     <hr />
+    <i class="fas fa-pen text-success" @click="addTask"></i>
     <Task v-for="task in tasks" :taskProp="task" :listProp="listProp" :key="task._id" />
-    <button class="badge badge-pill btn-success" @click="addTask">Add Task</button>
-    <button class="badge badge-pill btn-danger" @click="deleteList">
-      Delete List
-      <i class="fas fa-dumpster"></i>
-    </button>
   </div>
 </template>
 
