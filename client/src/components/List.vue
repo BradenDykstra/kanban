@@ -1,10 +1,10 @@
 <template>
-  <div class="list border col-4">
+  <div class="list border col-3 mx-1 mb-3 pb-3">
     <div class="d-flex justify-content-between">
       <h3 class="mt-1">{{listProp.title}}</h3>
       <i class="fas fa-dumpster float-right text-danger mt-3" @click="deleteList"></i>
     </div>
-    <hr />
+    <hr class="bg-light" />
     <i class="fas fa-pen text-success" @click="addTask"></i>
     <Task v-for="task in tasks" :taskProp="task" :listProp="listProp" :key="task._id" />
   </div>
