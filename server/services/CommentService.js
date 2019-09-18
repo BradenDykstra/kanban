@@ -9,7 +9,8 @@ let _schema = new Schema({
   body: { type: String, required: true },
   authorId: { type: ObjectId, ref: 'User', required: true },
   taskId: { type: ObjectId, ref: 'Task', required: true },
-  boardId: { type: ObjectId, ref: 'Board', required: true }
+  boardId: { type: ObjectId, ref: 'Board', required: true },
+  listId: { type: ObjectId, ref: 'List', required: true }
 }, { timestamps: true })
 
 //CASCADE ON DELETE
