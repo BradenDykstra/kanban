@@ -1,6 +1,6 @@
 <template>
-  <div class="boards">
-    WELCOME TO THE BOARDS!!!
+  <div class="boards text-light">
+    <h2>WELCOME TO THE BOARDS!!!</h2>
     <form @submit.prevent="addBoard">
       <input class="badge-pill" type="text" placeholder="title" v-model="newBoard.title" required />
       <input
@@ -12,7 +12,12 @@
       <button class="badge badge-pill btn-success" type="submit">Create Board</button>
     </form>
     <div v-for="board in boards" :key="board._id">
-      <router-link :to="{name: 'board', params: { boardId: board._id }}">{{board.title}}</router-link>
+      <div class="my-1 link badge badge-pill badge-primary text-light">
+        <router-link
+          class="link"
+          :to="{name: 'board', params: { boardId: board._id }}"
+        >{{board.title}}</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -44,3 +49,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.link {
+  color: #f8f9fa;
+  height: 30px;
+  font-size: 20px;
+}
+</style>

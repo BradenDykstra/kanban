@@ -1,15 +1,15 @@
 <template>
-  <div class="login">
+  <div class="login text-light">
     <form v-if="loginForm" @submit.prevent="loginUser">
-      <input type="email" v-model="creds.email" placeholder="email" />
-      <input type="password" v-model="creds.password" placeholder="password" />
-      <button class="btn btn-success" type="submit">Login</button>
+      <input class="badge-pill" type="email" v-model="creds.email" placeholder="email" />
+      <input class="badge-pill" type="password" v-model="creds.password" placeholder="password" />
+      <button class="badge-pill btn-success" type="submit">Login</button>
     </form>
     <form v-else @submit.prevent="register">
-      <input type="text" v-model="newUser.name" placeholder="name" />
-      <input type="email" v-model="newUser.email" placeholder="email" />
-      <input type="password" v-model="newUser.password" placeholder="password" />
-      <button class="btn btn-warning" type="submit">Create Account</button>
+      <input class="badge-pill" type="text" v-model="newUser.name" placeholder="name" />
+      <input class="badge-pill" type="email" v-model="newUser.email" placeholder="email" />
+      <input class="badge-pill" type="password" v-model="newUser.password" placeholder="password" />
+      <button class="badge-pill btn-warning" type="submit">Create Account</button>
     </form>
     <div class="action" @click="loginForm = !loginForm">
       <p v-if="loginForm">No account? Click here to Register</p>
