@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { Drag, Drop } from "vue-drag-drop";
 import DropdownItem from "./DropdownItem";
 import Comment from "./Comment";
 import swal from "sweetalert2";
