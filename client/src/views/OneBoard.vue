@@ -1,6 +1,11 @@
 <template>
   <div class="board container-fluid bg-dark text-light">
-    <h1>{{board.title}}</h1>
+    <div class="row justify-content-center d-flex">
+      <h1>{{board.title}}</h1>
+    </div>
+    <div class="row ml-2 neg-top">
+      <clock />
+    </div>
     <i
       class="fas fa-arrow-alt-circle-left text-primary mx-5"
       @click="rerout"
@@ -34,6 +39,7 @@
 <script>
 import List from "../components/List.vue";
 import swal from "sweetalert2";
+import clock from "../components/Clock";
 export default {
   name: "board",
   mounted() {
@@ -96,6 +102,12 @@ export default {
     }
   },
   props: ["boardId"],
-  components: { List }
+  components: { List, clock }
 };
 </script>
+
+<style>
+.neg-top {
+  margin-top: -50px;
+}
+</style>

@@ -4,7 +4,7 @@
     <div class="task" v-if="taskProp.listId == listProp._id">
       <div class="card text-dark">
         <div class="card-body">
-          <div class="row d-flex justify-content-between align-content-center">
+          <div class="row d-flex justify-content-center align-content-center">
             <h4>{{taskProp.body}}</h4>
           </div>
           <div class="row d-flex justify-content-center">
