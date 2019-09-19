@@ -1,10 +1,10 @@
 <template>
   <div class="clock">
     <div class="row justify-content-center">
-      <h5>{{getDay()}}, {{getMonth()}}.{{clock.getDate()}}, {{clock.getFullYear()}}</h5>
+      <h5>{{getDay()}}, {{getMonth()}}. {{clock.getDate()}}, {{clock.getFullYear()}}</h5>
     </div>
     <div class="row justify-content-center">
-      <h5>{{clock.getHours()}}:{{getMinutes()}}</h5>
+      <h5>{{getHours()}}:{{getMinutes()}}{{getPm()}}</h5>
     </div>
   </div>
 </template>
@@ -100,6 +100,21 @@ export default {
         minutes = "0" + minutes;
       }
       return minutes;
+    },
+    getHours() {
+      let hours = this.clock.getHours();
+      if (hours > 12) {
+        hours = hours - 12;
+      }
+      return hours;
+    },
+    getPm() {
+      let hour = this.clock.getHours();
+      let ampm = "am";
+      if (hour >= 12) {
+        ampm = "pm";
+      }
+      return ampm;
     }
   },
   components: {}

@@ -1,5 +1,5 @@
 <template>
-  <div class="board container-fluid bg-dark text-light">
+  <div class="board container-fluid text-light">
     <div class="row justify-content-center d-flex">
       <h1>{{board.title}}</h1>
     </div>
@@ -45,7 +45,13 @@ export default {
   mounted() {
     this.$store.dispatch("getBoards");
     this.$store.dispatch("getLists", this.$route.params.boardId);
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]')
+      .tooltip({
+        trigger: "hover"
+      })
+      .on("click", function() {
+        $(this).tooltip("hide");
+      });
   },
   methods: {
     rerout() {
