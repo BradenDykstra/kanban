@@ -1,6 +1,6 @@
 <template>
   <div class="board container-fluid text-light">
-    <div class="row justify-content-center d-flex">
+    <div class="row justify-content-center d-flex transparent-bg border">
       <h1>{{board.title}}</h1>
     </div>
     <div class="row ml-2 neg-top">
@@ -114,6 +114,10 @@ export default {
 
 <style>
 .neg-top {
-  margin-top: -50px;
+  margin-top: -55px;
+}
+
+.transparent-bg {
+  background-color: rgba(52, 58, 64, 0.4);
 }
 </style>

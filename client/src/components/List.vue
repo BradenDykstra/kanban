@@ -1,6 +1,6 @@
 <template>
   <drop
-    class="drop list col-3 mx-1 mb-3 pb-3 border"
+    class="drop list col-3 mx-1 mb-3 pb-3 border transparent-bg"
     @dragover="over = true"
     @dragleave="over = false"
     @drop="moveTask"

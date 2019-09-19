@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view />
-    <button class="btn btn-outline-danger fixed-bottom" @click="logout()">Logout</button>
+    <button class="btn btn-danger fixed-bottom" @click="logout()">Logout</button>
   </div>
 </template>
 
