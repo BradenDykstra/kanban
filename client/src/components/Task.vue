@@ -8,31 +8,15 @@
             <h4>{{taskProp.body}}</h4>
           </div>
           <div class="row d-flex justify-content-center">
-            <div class="dropdown-menu text-light bg-secondary">
-              <DropdownItem
-                v-for="list in lists"
-                :listProp="list"
-                :taskProp="taskProp"
-                :key="list._id"
-                class="dropdown-item"
-              />
-            </div>
-            <i
-              class="fas fa-arrows-alt text-info mx-3 my-tooltip my-dropdown"
-              data-toggle="dropdown"
-              title="Move this Task"
-              data-placement="right"
-            ></i>
-
             <i
               @click="addComment()"
-              class="text-success fas fa-comments mx-3"
+              class="text-success fas fa-comments mx-4"
               title="Add a Comment"
               data-toggle="tooltip"
               data-placement="right"
             ></i>
             <i
-              class="text-danger fas fa-trash-alt mx-3"
+              class="text-danger fas fa-trash-alt mx-4"
               @click="deleteTask()"
               title="Delete this Task"
               data-toggle="tooltip"
@@ -56,7 +40,6 @@
 
 <script>
 import { Drag, Drop } from "vue-drag-drop";
-import DropdownItem from "./DropdownItem";
 import Comment from "./Comment";
 import swal from "sweetalert2";
 export default {
@@ -116,13 +99,10 @@ export default {
   },
   mounted() {
     $('[data-toggle="tooltip"]').tooltip();
-    $(".my-dropdown").dropdown();
-    $(".my-dropdown").tooltip();
     this.$store.dispatch("getComments", this.taskProp._id);
   },
   components: {
     Comment,
-    DropdownItem,
     Drag,
     Drop
   }
