@@ -174,6 +174,12 @@ export default new Vuex.Store({
         .then(res => {
           dispatch('getComments', payload.taskId)
         })
+    },
+
+    //#endregion we didn't even start
+    changeTheme({ commit, dispatch }, payload) {
+      let theme = document.getElementById('theme')
+      theme.setAttribute('href', payload)
     }
   }
 })

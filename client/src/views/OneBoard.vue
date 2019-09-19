@@ -1,5 +1,5 @@
 <template>
-  <div class="board container-fluid text-light">
+  <div class="board text-light">
     <div class="row justify-content-center d-flex transparent-bg border">
       <h1>{{board.title}}</h1>
     </div>

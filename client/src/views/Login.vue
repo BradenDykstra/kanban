@@ -1,5 +1,8 @@
 <template>
   <div class="login text-light">
+    <div class="row">
+      <div class="col-12 space"></div>
+    </div>
     <form v-if="loginForm" @submit.prevent="loginUser">
       <input class="badge-pill" type="email" v-model="creds.email" placeholder="email" />
       <input class="badge-pill" type="password" v-model="creds.password" placeholder="password" />
@@ -55,5 +58,8 @@ export default {
 <style>
 .action {
   cursor: pointer;
+}
+.space {
+  height: 100px;
 }
 </style>

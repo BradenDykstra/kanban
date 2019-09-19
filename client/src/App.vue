@@ -1,6 +1,24 @@
 <template>
   <div id="app">
     <router-view />
+    <div class="row fixed-top position-absolute">
+      <div class="col-10"></div>
+      <div class="btn-group col-1">
+        <button
+          type="button"
+          class="btn btn-outline-primary dropdown-toggle"
+          data-toggle="dropdown"
+        >Change Theme</button>
+        <div class="dropdown-menu">
+          <p class="dropdown-item" @click="changeTheme('defaulttheme.css')">Default</p>
+          <p class="dropdown-item" @click="changeTheme('watertheme.css')">Water</p>
+          <p class="dropdown-item" @click="changeTheme('leaftheme.css')">Leaves</p>
+          <p class="dropdown-item" @click="changeTheme('spacetheme.css')">Space</p>
+          <p class="dropdown-item" @click="changeTheme('honeycombtheme.css')">Hexagons</p>
+          <p class="dropdown-item" @click="changeTheme('sandtheme.css')">Sand</p>
+        </div>
+      </div>
+    </div>
     <button class="btn btn-danger fixed-bottom" @click="logout()">Logout</button>
   </div>
 </template>
@@ -12,6 +30,9 @@ export default {
     logout() {
       this.$store.dispatch("logout");
       location.reload();
+    },
+    changeTheme(theme) {
+      this.$store.dispatch("changeTheme", theme);
     }
   }
 };
