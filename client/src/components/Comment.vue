@@ -41,6 +41,9 @@ export default {
           }
         });
     }
+  },
+  mounted() {
+    $('[data-toggle="tooltip"]').tooltip();
   }
 };
 </script>

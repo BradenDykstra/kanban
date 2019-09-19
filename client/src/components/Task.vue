@@ -6,22 +6,21 @@
           <h4>{{taskProp.body}}</h4>
         </div>
         <div class="row d-flex justify-content-center">
-          <i
-            class="fas fa-arrows-alt text-info mx-3"
-            data-toggle="tooltip"
-            title="Move this Task"
-            data-placement="right"
-          ></i>
-
-          <div class="dropdown-menu">
+          <div class="dropdown-menu text-light bg-dark">
             <DropdownItem
               v-for="list in lists"
               :listProp="list"
               :taskProp="taskProp"
               :key="list._id"
-              class="dropdown-item"
+              class="dropdown-item text-light"
             />
           </div>
+          <i
+            class="fas fa-arrows-alt text-info mx-3 my-tooltip my-dropdown"
+            data-toggle="dropdown"
+            title="Move this Task"
+            data-placement="right"
+          ></i>
 
           <i
             @click="addComment()"
@@ -112,8 +111,10 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("getComments", this.taskProp._id);
     $('[data-toggle="tooltip"]').tooltip();
+    $(".my-dropdown").dropdown();
+    $(".my-dropdown").tooltip();
+    this.$store.dispatch("getComments", this.taskProp._id);
   },
   components: {
     Comment,
@@ -126,4 +127,7 @@ export default {
 .badge {
   height: 20px;
 }
+/* .dropdown-menu {
+  background-color: #343a40;
+} */
 </style>
