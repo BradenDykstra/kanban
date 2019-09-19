@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view />
-    <div class="row fixed-top position-absolute">
+    <div class="row fixed-top position-absolute right15">
       <div class="col-10"></div>
       <div class="btn-group col-1">
         <button
@@ -61,5 +61,9 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.right15 {
+  right: 15px;
 }
 </style>
