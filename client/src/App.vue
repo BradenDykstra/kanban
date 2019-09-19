@@ -34,6 +34,9 @@ export default {
     changeTheme(theme) {
       this.$store.dispatch("changeTheme", theme);
     }
+  },
+  mounted() {
+    this.$store.dispatch("loadTheme");
   }
 };
 </script>

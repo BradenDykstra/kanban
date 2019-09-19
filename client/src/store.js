@@ -180,6 +180,16 @@ export default new Vuex.Store({
     changeTheme({ commit, dispatch }, payload) {
       let theme = document.getElementById('theme')
       theme.setAttribute('href', payload)
+      dispatch('saveTheme', payload)
+    },
+    saveTheme({ commit, dispatch }, payload) {
+      localStorage.setItem('theme', JSON.stringify(payload))
+    },
+    loadTheme({ commit, dispatch }, payload) {
+      let saved = JSON.parse(localStorage.getItem('theme'))
+      if (saved) {
+        dispatch('changeTheme', saved)
+      }
     }
   }
 })
