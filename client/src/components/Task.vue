@@ -1,53 +1,57 @@
 <template>
-  <div class="task" v-if="taskProp.listId == listProp._id">
-    <div class="card text-dark">
-      <div class="card-body">
-        <div class="row d-flex justify-content-between align-content-center">
-          <h4>{{taskProp.body}}</h4>
-        </div>
-        <div class="row d-flex justify-content-center">
-          <div class="dropdown-menu text-light bg-dark">
-            <DropdownItem
-              v-for="list in lists"
-              :listProp="list"
-              :taskProp="taskProp"
-              :key="list._id"
-              class="dropdown-item text-light"
-            />
+  <drag class="drag" :transferData="{ _id: taskProp._id,
+        oldListId: taskProp.listId}">
+    <div class="task" v-if="taskProp.listId == listProp._id">
+      <div class="card text-dark">
+        <div class="card-body">
+          <div class="row d-flex justify-content-between align-content-center">
+            <h4>{{taskProp.body}}</h4>
           </div>
-          <i
-            class="fas fa-arrows-alt text-info mx-3 my-tooltip my-dropdown"
-            data-toggle="dropdown"
-            title="Move this Task"
-            data-placement="right"
-          ></i>
+          <div class="row d-flex justify-content-center">
+            <div class="dropdown-menu text-light bg-secondary">
+              <DropdownItem
+                v-for="list in lists"
+                :listProp="list"
+                :taskProp="taskProp"
+                :key="list._id"
+                class="dropdown-item"
+              />
+            </div>
+            <i
+              class="fas fa-arrows-alt text-info mx-3 my-tooltip my-dropdown"
+              data-toggle="dropdown"
+              title="Move this Task"
+              data-placement="right"
+            ></i>
 
-          <i
-            @click="addComment()"
-            class="text-success fas fa-comments mx-3"
-            title="Add a Comment"
-            data-toggle="tooltip"
-            data-placement="right"
-          ></i>
-          <i
-            class="text-danger fas fa-trash-alt mx-3"
-            @click="deleteTask()"
-            title="Delete this Task"
-            data-toggle="tooltip"
-            data-placement="right"
-          ></i>
+            <i
+              @click="addComment()"
+              class="text-success fas fa-comments mx-3"
+              title="Add a Comment"
+              data-toggle="tooltip"
+              data-placement="right"
+            ></i>
+            <i
+              class="text-danger fas fa-trash-alt mx-3"
+              @click="deleteTask()"
+              title="Delete this Task"
+              data-toggle="tooltip"
+              data-placement="right"
+            ></i>
+          </div>
         </div>
       </div>
+
+      <Comment
+        class="rounded"
+        v-for="comment in comments"
+        :commentProp="comment"
+        :taskProp="taskProp"
+        :key="comment._id"
+      />
+      <div class="row d-flex justify-content-center"></div>
     </div>
-    <Comment
-      class="rounded"
-      v-for="comment in comments"
-      :commentProp="comment"
-      :taskProp="taskProp"
-      :key="comment._id"
-    />
-    <div class="row d-flex justify-content-center"></div>
-  </div>
+  </drag>
 </template>
 
 <script>
@@ -118,7 +122,9 @@ export default {
   },
   components: {
     Comment,
-    DropdownItem
+    DropdownItem,
+    Drag,
+    Drop
   }
 };
 </script>

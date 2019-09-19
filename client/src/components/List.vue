@@ -1,5 +1,10 @@
 <template>
-  <div class="list border col-3 mx-1 mb-3 pb-3">
+  <drop
+    class="drop list col-3 mx-1 mb-3 pb-3 border"
+    @dragover="over = true"
+    @dragleave="over = false"
+    @drop="moveTask"
+  >
     <div class="d-flex justify-content-between">
       <h3 class="mt-1">{{listProp.title}}</h3>
       <i
@@ -19,10 +24,12 @@
       data-placement="right"
     ></i>
     <Task class="my-2" v-for="task in tasks" :taskProp="task" :listProp="listProp" :key="task._id" />
-  </div>
+  </drop>
 </template>
 
 <script>
+import Vue from "vue";
+import { Drag, Drop } from "vue-drag-drop";
 import swal from "sweetalert2";
 import Task from "./Task";
 export default {
@@ -61,6 +68,13 @@ export default {
           }
         });
     },
+    moveTask(data) {
+      this.$store.dispatch("moveTask", {
+        _id: data._id,
+        oldListId: data.oldListId,
+        listId: this.listProp._id
+      });
+    },
     deleteList() {
       let confirmed = swal
         .fire({
@@ -79,7 +93,9 @@ export default {
     this.$store.dispatch("getTasks", this.listProp._id);
   },
   components: {
-    Task
+    Task,
+    Drag,
+    Drop
   }
 };
 </script>
