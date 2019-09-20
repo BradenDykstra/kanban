@@ -1,7 +1,9 @@
 <template>
   <div class="login text-light">
     <div class="row">
-      <div class="col-12 space"></div>
+      <div class="col-12 space">
+        <h1>Welcome to KanBanada</h1>
+      </div>
     </div>
     <form v-if="loginForm" @submit.prevent="loginUser">
       <input class="badge-pill" type="email" v-model="creds.email" placeholder="email" />
