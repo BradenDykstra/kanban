@@ -14,7 +14,7 @@ export default class BoardsController {
       .get('/:id', this.getById)
       .get('/:id/lists', this.getListsById)
       .post('', this.create)
-      .put('/:id', this.edit)
+      .put('/:id', this.addCollab)
       .delete('/:id', this.delete)
       .use(this.defaultRoute)
   }
@@ -26,7 +26,8 @@ export default class BoardsController {
   async getAll(req, res, next) {
     try {
       //only gets boards by user who is logged in
-      let data = await _boardService.find({ authorId: req.session.uid })
+      let data = await _boardService.find({ collabs: req.session.uid })
+
       return res.send(data)
     }
     catch (err) { next(err) }
@@ -51,9 +52,21 @@ export default class BoardsController {
   async create(req, res, next) {
     try {
       req.body.authorId = req.session.uid
+      req.body.collabs.push(req.session.uid)
       let data = await _boardService.create(req.body)
       return res.status(201).send(data)
     } catch (error) { next(error) }
+  }
+
+  async addCollab(req, res, next) {
+    try {
+      let board = await _boardService.findOne({ _id: req.params.id })
+      board.collabs.push(req.body)
+      let data = await _boardService.findOneAndUpdate({ _id: req.params.id, authorId: req.session.uid }, { new: true })
+      return res.send(data)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async edit(req, res, next) {

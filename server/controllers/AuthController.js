@@ -18,6 +18,7 @@ export default class AuthController {
     defaultRoute(req, res, next) {
         next({ status: 404, message: 'No Such Route' })
     }
+
     async register(req, res, next) {
         //VALIDATE PASSWORD LENGTH
         if (req.body.password.length < 6) {

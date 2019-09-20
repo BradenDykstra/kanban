@@ -32,7 +32,8 @@ export default {
     return {
       newBoard: {
         title: "",
-        description: ""
+        description: "",
+        collabs: []
       }
     };
   },

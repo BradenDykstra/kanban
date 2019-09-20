@@ -12,6 +12,7 @@ let _commentRepo = new CommentService().repository
 let _schema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
+  collabs: [{ type: ObjectId, ref: 'User' }],
   authorId: { type: ObjectId, ref: 'User', required: true }
 }, { timestamps: true })
 

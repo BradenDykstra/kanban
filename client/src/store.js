@@ -48,7 +48,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    //#region -- AUTH STUFF --
+    //SECTION  -- AUTH STUFF --
     async register({ commit, dispatch }, creds) {
       try {
         let user = await AuthService.Register(creds)
@@ -77,10 +77,9 @@ export default new Vuex.Store({
         console.warn(e.message)
       }
     },
-    //#endregion
+    //!SECTION 
 
-
-    //#region -- BOARDS --
+    //SECTION -- BOARDS --
     getBoards({ commit, dispatch }) {
       api.get('boards')
         .then(res => {
@@ -106,10 +105,11 @@ export default new Vuex.Store({
           router.push('/boards')
         })
     },
-    //#endregion
+
+    //!SECTION 
 
 
-    //#region -- LISTS --
+    //SECTION  -- LISTS --
     getLists({ commit, dispatch }, payload) {
 
       api.get(`/boards/${payload}/lists`)
@@ -129,7 +129,11 @@ export default new Vuex.Store({
           dispatch('getLists', data.boardId)
         })
     },
-    //#endregion
+
+    //!SECTION 
+
+    //SECTION -- TASKS --
+
     getTasks({ commit, dispatch }, payload) {
       api.get(`/lists/${payload}/tasks`)
         .then(res => {
@@ -155,8 +159,9 @@ export default new Vuex.Store({
           dispatch('getTasks', payload.oldListId)
         })
     },
-    //end other region that we didn't start
+    //!SECTION 
 
+    //SECTION  --COMMENTS--
     getComments({ commit, dispatch }, payload) {
       api.get(`/tasks/${payload}/comments`)
         .then(res => {
@@ -176,7 +181,9 @@ export default new Vuex.Store({
         })
     },
 
-    //#endregion we didn't even start
+    //!SECTION 
+
+    //SECTION  --THEMES--
     changeTheme({ commit, dispatch }, payload) {
       let theme = document.getElementById('theme')
       theme.setAttribute('href', payload)
@@ -190,6 +197,24 @@ export default new Vuex.Store({
       if (saved) {
         dispatch('changeTheme', saved)
       }
+    },
+    //!SECTION 
+
+    //SECTION  -- COLLABORATORS --
+
+    addCollab({ commit, dispatch }, payload) {
+      api.put(`/boards/${payload.boardId}`, payload)
+    },
+
+    getUser({ commit, dispatch }, payload) {
+      return new Promise((resolve, reject) => {
+
+        api.get(`/users/${payload}`).then(res => {
+          resolve(res)
+        })
+      })
     }
+
+    //!SECTION 
   }
 })

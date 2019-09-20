@@ -31,8 +31,7 @@
     <div class="row d-flex justify-content-around">
       <List v-for="list in lists" :listProp="list" :key="list._id" />
     </div>
-
-    <br />
+    <button class="btn btn-primary fixed-bottom collabbtn" @click="addCollab()">Invite Collaborators</button>
   </div>
 </template>
 
@@ -92,6 +91,27 @@ export default {
             this.$store.dispatch("addList", data);
           }
         });
+    },
+    addCollab() {
+      swal
+        .mixin({
+          input: "text",
+          confirmButtonText: "Next &rarr;",
+          showCancelButton: true
+        })
+        .queue([
+          {
+            title: "Enter the email of the collaborator",
+            text: "Collaborators are dope"
+          }
+        ])
+        .then(async result => {
+          if (result.value) {
+            let user = await this.$store.dispatch("getUser", result.value[0]);
+            user.data.boardId = this.boardId;
+            this.$store.dispatch("addCollab", user.data);
+          }
+        });
     }
   },
   computed: {
@@ -119,5 +139,9 @@ export default {
 
 .transparent-bg {
   background-color: rgba(52, 58, 64, 0.4);
+}
+
+.collabbtn {
+  margin-left: 80%;
 }
 </style>
