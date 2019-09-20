@@ -60,9 +60,7 @@ export default class BoardsController {
 
   async addCollab(req, res, next) {
     try {
-      let board = await _boardService.findOne({ _id: req.params.id })
-      board.collabs.push(req.body)
-      let data = await _boardService.findOneAndUpdate({ _id: req.params.id, authorId: req.session.uid }, { new: true })
+      let data = await _boardService.findOneAndUpdate({ _id: req.params.id, authorId: req.session.uid }, { $push: { collabs: req.body._id } }, { new: true })
       return res.send(data)
     } catch (error) {
       next(error)
