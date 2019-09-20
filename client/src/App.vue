@@ -11,6 +11,7 @@
         >Change Theme</button>
         <div class="dropdown-menu">
           <p class="dropdown-item" @click="changeTheme('defaulttheme.css')">Default</p>
+          <p class="dropdown-item" @click="changeTheme('defaultthemelight.css')">Default Light</p>
           <p class="dropdown-item" @click="changeTheme('watertheme.css')">Water</p>
           <p class="dropdown-item" @click="changeTheme('leaftheme.css')">Leaves</p>
           <p class="dropdown-item" @click="changeTheme('spacetheme.css')">Space</p>
