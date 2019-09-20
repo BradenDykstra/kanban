@@ -2,7 +2,7 @@
   <div class="login text-light">
     <div class="row">
       <div class="col-12 space">
-        <h1>Welcome to KanBanada</h1>
+        <h1 class="transparent-bg">Welcome to KanBanada</h1>
       </div>
     </div>
     <form v-if="loginForm" @submit.prevent="loginUser">
@@ -16,9 +16,14 @@
       <input class="badge-pill" type="password" v-model="newUser.password" placeholder="password" />
       <button class="badge-pill btn-warning" type="submit">Create Account</button>
     </form>
-    <div class="action" @click="loginForm = !loginForm">
-      <p v-if="loginForm">No account? Click here to Register</p>
-      <p v-else>Already have an account? Click here to Login</p>
+    <div class="row d-flex justify-content-center">
+      <div
+        class="col-2 action transparent-bg d-flex justify-content-center"
+        @click="loginForm = !loginForm"
+      >
+        <p v-if="loginForm">No account? Click here to Register</p>
+        <p v-else>Already have an account? Click here to Login</p>
+      </div>
     </div>
   </div>
 </template>
@@ -60,6 +65,9 @@ export default {
 <style>
 .action {
   cursor: pointer;
+}
+.actionrow {
+  width: 20%;
 }
 .space {
   height: 100px;
