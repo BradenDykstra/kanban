@@ -61,7 +61,7 @@ export default {
       let confirmed = swal
         .fire({
           title: "Are you sure?",
-          text: "This action cannot be undone!",
+          text: "Do you really want to delete this board?",
           showCancelButton: true
         })
         .then(res => {

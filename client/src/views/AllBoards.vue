@@ -1,6 +1,6 @@
 <template>
   <div class="boards text-light">
-    <h2>WELCOME TO THE BOARDS!!!</h2>
+    <h2 class="transparent-bg">WELCOME TO THE BOARDS!!!</h2>
     <form @submit.prevent="addBoard">
       <input class="badge-pill" type="text" placeholder="title" v-model="newBoard.title" required />
       <input
